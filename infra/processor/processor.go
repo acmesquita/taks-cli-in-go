@@ -5,6 +5,7 @@ import (
 
 	"github.com/acmesquita/task_tracker/core/services"
 	"github.com/acmesquita/task_tracker/infra/commands"
+	"github.com/acmesquita/task_tracker/infra/processor/adapter"
 	"github.com/acmesquita/task_tracker/infra/processor/handlers"
 )
 
@@ -17,19 +18,22 @@ func NewProcessor(service services.TaskService) *Processor {
 }
 
 func (p *Processor) Process(command string, options map[string]string) {
+
+	request := adapter.NewRequest(command, options)
+
 	switch command {
 	case "add":
-		handlers.AddTask(p.service, options)
+		handlers.AddTask(p.service, *request)
 	case "update":
-		handlers.UpdateTask(p.service, options)
+		handlers.UpdateTask(p.service, *request)
 	case "delete":
-		handlers.DeleteTask(p.service, options)
+		handlers.DeleteTask(p.service, *request)
 	case "list":
 		handlers.ListTasks(p.service)
 	case "get":
-		handlers.FindTask(p.service, options)
+		handlers.FindTask(p.service, *request)
 	case "mark-done":
-		handlers.MarkDoneTask(p.service, options)
+		handlers.MarkDoneTask(p.service, *request)
 	case "help":
 		handleHelpCommand()
 	}

@@ -6,11 +6,12 @@ import (
 
 	"github.com/acmesquita/task_tracker/core/services"
 	"github.com/acmesquita/task_tracker/infra/commands"
+	"github.com/acmesquita/task_tracker/infra/processor/adapter"
 )
 
-func FindTask(service services.TaskService, options map[string]string) {
+func FindTask(service services.TaskService, request adapter.Request) {
 	fmt.Println("Getting task")
-	id := options["id"]
+	id := request.GetOptions()["id"]
 	if id == "" {
 		fmt.Println("ID is required")
 		commands.HandleHelperMessage()

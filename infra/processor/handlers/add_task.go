@@ -6,13 +6,14 @@ import (
 
 	"github.com/acmesquita/task_tracker/core/services"
 	"github.com/acmesquita/task_tracker/infra/commands"
+	"github.com/acmesquita/task_tracker/infra/processor/adapter"
 )
 
-func AddTask(service services.TaskService, options map[string]string) {
+func AddTask(service services.TaskService, request adapter.Request) {
 	fmt.Println("Adding task")
-	description := options["description"]
+	description := request.GetOptions()["description"]
 	if description == "" {
-		description = options["d"]
+		description = request.GetOptions()["d"]
 	}
 	if description == "" {
 		fmt.Println("Description is required")
