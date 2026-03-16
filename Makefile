@@ -8,7 +8,7 @@ GO_RUN_CMD = $(GO_CMD) run
 
 # Targets
 build:
-	$(GO_BUILD_CMD) -o bin/task_tracker cmd/main.go
+	$(GO_BUILD_CMD) -o bin/task-cli cmd/main.go
 
 test:
 	$(GO_TEST_CMD) ./... -v --cover
