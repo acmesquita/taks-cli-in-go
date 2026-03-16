@@ -1,10 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/acmesquita/task_tracker/app/repository"
-	"github.com/acmesquita/task_tracker/app/services"
+	"github.com/acmesquita/task_tracker/core/repository"
+	"github.com/acmesquita/task_tracker/core/services"
 	"github.com/acmesquita/task_tracker/infra/commands"
 	"github.com/acmesquita/task_tracker/infra/processor"
 )
@@ -18,5 +19,8 @@ func main() {
 	})
 
 	processor := processor.NewProcessor(*service)
+
+	fmt.Println("Processing command", command, options)
 	processor.Process(command, options)
+	fmt.Println("Command processed")
 }

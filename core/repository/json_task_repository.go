@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/acmesquita/task_tracker/app/model"
+	"github.com/acmesquita/task_tracker/core/model"
 )
 
 type JSONTaskRepository struct {

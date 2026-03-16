@@ -3,7 +3,7 @@ package handlers
 import (
 	"fmt"
 
-	"github.com/acmesquita/task_tracker/app/services"
+	"github.com/acmesquita/task_tracker/core/services"
 )
 
 func AddTask(service services.TaskService, options map[string]string) {

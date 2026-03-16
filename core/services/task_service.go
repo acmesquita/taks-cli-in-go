@@ -1,8 +1,8 @@
 package services
 
 import (
-	"github.com/acmesquita/task_tracker/app/model"
-	"github.com/acmesquita/task_tracker/app/repository"
+	"github.com/acmesquita/task_tracker/core/model"
+	"github.com/acmesquita/task_tracker/core/repository"
 )
 
 type TaskService struct {

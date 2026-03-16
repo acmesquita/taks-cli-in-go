@@ -3,8 +3,8 @@ package services
 import (
 	"testing"
 
-	"github.com/acmesquita/task_tracker/app/model"
-	"github.com/acmesquita/task_tracker/app/repository"
+	"github.com/acmesquita/task_tracker/core/model"
+	"github.com/acmesquita/task_tracker/core/repository"
 )
 
 func setupTaskRepository() repository.TaskRepository {

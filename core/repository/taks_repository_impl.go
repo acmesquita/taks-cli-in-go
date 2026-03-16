@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/acmesquita/task_tracker/app/model"
+import "github.com/acmesquita/task_tracker/core/model"
 
 type TaskRepositoryImpl struct {
 	Tasks []*model.Task

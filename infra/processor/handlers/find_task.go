@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/acmesquita/task_tracker/app/services"
+	"github.com/acmesquita/task_tracker/core/services"
 	"github.com/acmesquita/task_tracker/infra/commands"
 )
 
