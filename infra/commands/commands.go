@@ -105,10 +105,7 @@ func parseOptions(args []string) map[string]string {
 			value = args[index+1]
 		}
 
-		k := strings.ReplaceAll(key, " ", "")
-		v := strings.ReplaceAll(value, " ", "")
-
-		options[k] = v
+		options[key] = value
 
 		if index+1 == len(args) {
 			break
