@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	description := flag.String("description", "", "description of the task")
+
+	flag.Parse()
+
+	fmt.Println("Description:", *description)
 }
