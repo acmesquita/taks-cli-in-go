@@ -220,3 +220,41 @@ func TestProcessor_InvalidCommand_WithJSONRepository(t *testing.T) {
 		t.Fatalf("expected no error, got %v", err)
 	}
 }
+
+func TestProcessor_ListTasks_WithJSONRepository(t *testing.T) {
+	p, repo, cleanup := newJSONBackedProcessor(t)
+	defer cleanup()
+
+	p.Process("add", map[string]string{"description": "Finish report"})
+	p.Process("add", map[string]string{"description": "Learn Go"})
+
+	tasks := repo.ListTasks()
+	if len(tasks) != 2 {
+		t.Fatalf("expected 2 tasks after add, got %d", len(tasks))
+	}
+	p.Process("list", map[string]string{"status": "all"})
+	if len(tasks) != 2 {
+		t.Fatalf("expected 2 tasks after list, got %d", len(tasks))
+	}
+}
+
+func TestProcessor_ListTasksByStatus_WithJSONRepository(t *testing.T) {
+	p, repo, cleanup := newJSONBackedProcessor(t)
+	service := services.NewTaskService(repo)
+	defer cleanup()
+
+	p.Process("add", map[string]string{"description": "Finish report"})
+	p.Process("add", map[string]string{"description": "Learn Go"})
+
+	tasks := service.ListTasksByStatus("all")
+	if len(tasks) != 2 {
+		t.Fatalf("expected 2 tasks after add, got %d", len(tasks))
+	}
+	p.Process("mark-done", map[string]string{"id": tasks[0].ID})
+
+	p.Process("list", map[string]string{"status": "done"})
+	tasks = service.ListTasksByStatus("done")
+	if len(tasks) != 1 {
+		t.Fatalf("expected 1 task after list, got %d", len(tasks))
+	}
+}

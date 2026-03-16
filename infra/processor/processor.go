@@ -29,7 +29,7 @@ func (p *Processor) Process(command string, options map[string]string) {
 	case "delete":
 		handlers.DeleteTask(p.service, *request)
 	case "list":
-		handlers.ListTasks(p.service)
+		handlers.ListTasks(p.service, *request)
 	case "get":
 		handlers.FindTask(p.service, *request)
 	case "mark-done":

@@ -65,3 +65,17 @@ func (s *TaskService) MarkTaskAsInProgress(id string) *model.Task {
 	s.taskRepository.UpdateTask(task)
 	return task
 }
+
+func (s *TaskService) ListTasksByStatus(status string) []*model.Task {
+	tasks := s.taskRepository.ListTasks()
+	if status == "all" {
+		return tasks
+	}
+	filteredTasks := make([]*model.Task, 0)
+	for _, task := range tasks {
+		if task.Status == status {
+			filteredTasks = append(filteredTasks, task)
+		}
+	}
+	return filteredTasks
+}
