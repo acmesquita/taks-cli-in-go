@@ -14,6 +14,7 @@ var commands = []string{
 	"list",
 	"get",
 	"mark-done",
+	"mark-in-progress",
 	"help",
 }
 
@@ -40,51 +41,6 @@ func validateCommands(args []string) {
 
 func ParseOptions(command string, args []string) map[string]string {
 	options := parseOptions(args)
-
-	if command == "add" {
-		if _, ok := options["description"]; ok {
-			if options["description"] == "" {
-				fmt.Println("When adding a task, the description is required")
-				HandleHelperMessage()
-				os.Exit(1)
-			}
-		} else if _, ok := options["d"]; ok {
-			if options["d"] == "" {
-				fmt.Println("When adding a task, the description is required")
-				HandleHelperMessage()
-				os.Exit(1)
-			}
-		} else {
-			fmt.Println("When adding a task, the description is required")
-			HandleHelperMessage()
-			os.Exit(1)
-		}
-	}
-
-	if command == "update" {
-		if _, ok := options["id"]; ok {
-			if options["id"] == "" {
-				fmt.Println("When updating a task, the id is required")
-				HandleHelperMessage()
-				os.Exit(1)
-			}
-
-			if _, ok := options["description"]; ok {
-				if options["description"] == "" {
-					fmt.Println("When updating a task, the description is required")
-					HandleHelperMessage()
-					os.Exit(1)
-				}
-			} else if _, ok := options["d"]; ok {
-				if options["d"] == "" {
-					fmt.Println("When updating a task, the description is required")
-					HandleHelperMessage()
-					os.Exit(1)
-				}
-			}
-		}
-	}
-
 	return options
 }
 

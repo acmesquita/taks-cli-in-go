@@ -34,6 +34,8 @@ func (p *Processor) Process(command string, options map[string]string) {
 		handlers.FindTask(p.service, *request)
 	case "mark-done":
 		handlers.MarkDoneTask(p.service, *request)
+	case "mark-in-progress":
+		handlers.MarkInProgressTask(p.service, *request)
 	case "help":
 		handleHelpCommand()
 	}

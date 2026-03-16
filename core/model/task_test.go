@@ -59,3 +59,11 @@ func TestMarkAsDoneTask(t *testing.T) {
 	task := NewTask("Buy groceries")
 	task.MarkAsDone()
 }
+
+func TestMarkAsInProgressTask(t *testing.T) {
+	task := NewTask("Buy groceries")
+	task.MarkAsInProgress()
+	if task.Status != "in_progress" {
+		t.Errorf("Task Status is not in_progress")
+	}
+}

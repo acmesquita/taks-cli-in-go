@@ -91,3 +91,13 @@ func TestMarkTaskAsDone(t *testing.T) {
 		t.Errorf("Task not marked as done")
 	}
 }
+
+func TestMarkTaskAsInProgress(t *testing.T) {
+	taskRepository := setupTaskRepository()
+	taskService := NewTaskService(taskRepository)
+	task := taskService.AddTask("Buy groceries")
+	taskService.MarkTaskAsInProgress(task.ID)
+	if task.Status != "in_progress" {
+		t.Errorf("Task not marked as in progress")
+	}
+}

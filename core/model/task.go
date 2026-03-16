@@ -15,8 +15,9 @@ type Task struct {
 }
 
 const (
-	TODO = "todo"
-	DONE = "done"
+	TODO        = "todo"
+	IN_PROGRESS = "in_progress"
+	DONE        = "done"
 )
 
 func NewTask(description string) *Task {
@@ -58,5 +59,10 @@ func (t *Task) Update(description string) {
 
 func (t *Task) MarkAsDone() {
 	t.Status = DONE
+	t.UpdatedAt = time.Now().Format(time.RFC3339)
+}
+
+func (t *Task) MarkAsInProgress() {
+	t.Status = IN_PROGRESS
 	t.UpdatedAt = time.Now().Format(time.RFC3339)
 }

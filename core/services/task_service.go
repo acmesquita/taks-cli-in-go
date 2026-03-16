@@ -55,3 +55,13 @@ func (s *TaskService) MarkTaskAsDone(id string) *model.Task {
 	s.taskRepository.UpdateTask(task)
 	return task
 }
+
+func (s *TaskService) MarkTaskAsInProgress(id string) *model.Task {
+	task := s.taskRepository.GetTask(id)
+	if task == nil {
+		return nil
+	}
+	task.MarkAsInProgress()
+	s.taskRepository.UpdateTask(task)
+	return task
+}
